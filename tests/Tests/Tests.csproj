@@ -2,14 +2,31 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <LangVersion>8.0</LangVersion>
     <IsPackable>false</IsPackable>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FitsCs" Version="0.2.5" />
+    <PackageReference Include="MemoryExtensions" Version="2.0.1" TargetFramework="netstandard2.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
     <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0"/>
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FitsConverters\FitsConverters.csproj" />
+  </ItemGroup>
+
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="RD /S /Q &quot;$(TargetDir)cs\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)da\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)de\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)es\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)fa\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)fi\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)fr\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)it\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)ko\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)mk\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)nl\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)pl\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)pt\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)ru\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)sv\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)tr\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)zh-Hans\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)zh-Hant\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)ja\&quot;&#xD;&#xA;RD /S /Q &quot;$(TargetDir)pt-BR\&quot;" />
+  </Target>
 
 </Project>
