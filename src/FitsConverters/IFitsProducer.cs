@@ -9,21 +9,20 @@ namespace FitsConverters
 {
     public interface IFitsProducer<in T>
     {
-        Block ConvertToBlock(T input, IEnumerable<IFitsValue> extraKeys);
+        Block ConvertToBlock(T input, IEnumerable<IFitsValue> extraKeys, bool isXtension = false);
 
         Block ConvertToBlock(T input, params IFitsValue[] extraKeys) =>
-            ConvertToBlock(input, extraKeys as IEnumerable<IFitsValue>);
+            ConvertToBlock(input, extraKeys, false);
 
-        Block ConvertToBlock(T input) => ConvertToBlock(input, Array.Empty<IFitsValue>());
+        Block ConvertToBlock(T input, bool isXtension = false) => ConvertToBlock(input, Enumerable.Empty<IFitsValue>(), isXtension);
 
-
-        ValueTask WriteToFitsAsync(T input, FitsWriter writer, IEnumerable<IFitsValue> extraKeys, CancellationToken token = default);
+        ValueTask WriteToFitsAsync(T input, FitsWriter writer, IEnumerable<IFitsValue> extraKeys, bool isXtension = false, CancellationToken token = default);
 
         ValueTask WriteToFitsAsync(T input, FitsWriter writer, params IFitsValue[] extraKeys) =>
-            WriteToFitsAsync(input, writer, extraKeys, default);
+            WriteToFitsAsync(input, writer, extraKeys, false);
 
-        ValueTask WriteToFitsAsync(T input, FitsWriter writer, CancellationToken token = default) =>
-            WriteToFitsAsync(input, writer, Enumerable.Empty<IFitsValue>(), token);
+        ValueTask WriteToFitsAsync(T input, FitsWriter writer, bool isXtension = false, CancellationToken token = default) =>
+            WriteToFitsAsync(input, writer, Enumerable.Empty<IFitsValue>(), isXtension, token);
 
     }
 }
