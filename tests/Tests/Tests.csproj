@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FitsCs" Version="0.2.5" />
+    <PackageReference Include="FitsCs" Version="0.2.7" />
     <PackageReference Include="MemoryExtensions" Version="2.0.1" TargetFramework="netstandard2.0" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
     <PackageReference Include="nunit" Version="3.12.0" />
